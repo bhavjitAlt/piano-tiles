@@ -8,8 +8,13 @@ for (const file of files) {
     const data = await readFile(`midi/${file}`)
     const midi = new Midi(data.buffer)
 
-    const tracks = midi.tracks.filter(track => track.name.startsWith('Piano'))
-    const mergesNotes = [...tracks[0].notes, ...tracks[1].notes]
+    const tracks = midi.tracks.filter(track => track.name.toLowerCase().includes('piano'))
+    const notes = tracks.reduce((notes, track) => {
+        notes.push(...track.notes)
+        return notes
+    }, [])
+
+    const mergesNotes = notes
         .map(note => ({
             time: note.time,
             name: convertSharpToFlat(note.name),
