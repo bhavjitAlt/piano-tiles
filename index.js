@@ -37,12 +37,12 @@ function base64ToFloat32Array(base64) {
     return new Float32Array((Uint8Array.from(atob(base64), c => c.charCodeAt(0))).buffer)
 }
 
-const SOUNDS = ['A0', 'A5', 'Ab3', 'B0', 'B5', 'Bb2', 'Bb7', 'C5', 'D2', 'D7', 'Db5', 'E2', 'E7', 'Eb5', 'F3', 'G1', 'G6', 'Gb4', 'A1', 'A6', 'Ab4', 'B1', 'B6', 'Bb3', 'C1', 'C6', 'D3', 'Db1', 'Db6', 'E3', 'Eb1', 'Eb6', 'F4', 'G2', 'G7', 'Gb5', 'A2', 'A7', 'Ab5', 'B2', 'B7', 'Bb4', 'C2', 'C7', 'D4', 'Db2', 'Db7', 'E4', 'Eb2', 'Eb7', 'F5', 'G3', 'Gb1', 'Gb6', 'A3', 'Ab1', 'Ab6', 'B3', 'Bb0', 'Bb5', 'C3', 'C8', 'D5', 'Db3', 'Db8', 'E5', 'Eb3', 'F1', 'F6', 'G4', 'Gb2', 'Gb7', 'A4', 'Ab2', 'Ab7', 'B4', 'Bb1', 'Bb6', 'C4', 'D1', 'D6', 'Db4', 'E1', 'E6', 'Eb4', 'F2', 'F7', 'G5', 'Gb3']
+const NOTES = ['A0', 'Bb0', 'B0', 'C1', 'Db1', 'D1', 'Eb1', 'E1', 'F1', 'Gb1', 'G1', 'Ab1', 'A1', 'Bb1', 'B1', 'C2', 'Db2', 'D2', 'Eb2', 'E2', 'F2', 'Gb2', 'G2', 'Ab2', 'A2', 'Bb2', 'B2', 'C3', 'Db3', 'D3', 'Eb3', 'E3', 'F3', 'Gb3', 'G3', 'Ab3', 'A3', 'Bb3', 'B3', 'C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4', 'C5', 'Db5', 'D5', 'Eb5', 'E5', 'F5', 'Gb5', 'G5', 'Ab5', 'A5', 'Bb5', 'B5', 'C6', 'Db6', 'D6', 'Eb6', 'E6', 'F6', 'Gb6', 'G6', 'Ab6', 'A6', 'Bb6', 'B6', 'C7', 'Db7', 'D7', 'Eb7', 'E7', 'F7', 'Gb7', 'G7', 'Ab7', 'A7', 'Bb7', 'B7', 'C8', 'Db8']
 
 let progress = 0
-for (const sound of SOUNDS) {
-    loadAndDecodeAudio(`./mp3/${sound}.mp3`).then(async ({ audioSamples, sampleRate }) => {
+for (const note of NOTES) {
+    loadAndDecodeAudio(`./mp3/${note}.mp3`).then(async ({ audioSamples, sampleRate }) => {
         const base64 = float32ArrayToBase64(audioSamples)
-        console.log(sound + ' = \'' + base64 + '\'\n')
+        console.log(note + ' = \'' + base64 + '\'\n')
     })
 }
